@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+} 
+
+
+.App{
+    display: flex;
+    flex-shrink: 0;
+    align-content: flex-start;
+    flex-direction: row;
+    background-color: #CBE4DE;
+    min-height: 100vh;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    margin-left: 20%;
+}
+
+
+.navcontents{
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-content: center;
+    font-family: "Lucida Grande", sans-serif;
+    padding-top: 16%;
+    padding-left: 10%;
+}
+
+.navcontents-grediiit{
+    font-weight: 200;
+    font-size: 1.3rem;
+    opacity: 70%;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-content: center;
+    font-family: "Lucida Grande", sans-serif;
+    padding-top:14%;
+    padding-left: 20%;
+}
+
+.profile {
+    padding: 2rem;
+
+}
+.profileForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    max-width: 500px;
+    min-width: 500px;
+}
+.follower_following {
+    display: flex;
+    flex-direction: row;
+}
+.back_to_profile {
+    margin-top: 18px;
+    position: sticky;
+}
+
+.createsubbutton{
+    padding : 20px;
+    position : fixed;
+}
+
+.subgrediiitcard{
+    width: 600px;
+    margin-left: 280px;
+    margin-top: 100px;
+    padding: 2rem;
+}
+.subgrediiitcards{
+    margin-left: 300px;
+    padding-top: 20px;
+}
+
+.postlist{
+    width: 600px;
+    margin-left: 280px;  
+}
+
+.newPostButton{
+    margin-top : 20px;
+    margin-left : 20px;
+}
+
+.navcontents-grediiit-page{
+    font-weight: 200;
+    font-size: 1.3rem;
+    opacity: 70%;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-content: center;
+    font-family: "Lucida Grande", sans-serif;
+
+}
