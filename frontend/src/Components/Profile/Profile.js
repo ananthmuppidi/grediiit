@@ -121,11 +121,12 @@ const ProfileDetails = () => {
 
 
     const handleRemoveFollower = (user) => {
+        
         const headers = {
             Authorization: authHeader(),
           };
 
-          axios.get('http://localhost:3500/follower/delete', {"email" : user.email }, { headers })
+          axios.post('http://localhost:3500/follower/delete/removefollower', {"email" : user }, { headers })
           .then(res => {
             console.log(res.data);
             window.location.reload(); // Reload the page after saving the details
@@ -143,7 +144,10 @@ const ProfileDetails = () => {
             Authorization: authHeader(),
           };
 
-          axios.post('http://localhost:3500/follower/delete', {"email" : user.email }, { headers })
+          console.log(user)
+
+          
+          axios.post('http://localhost:3500/follower/delete', {"email" : user}, { headers })
           .then(res => {
             console.log(res.data);
             window.location.reload(); // Reload the page after saving the details

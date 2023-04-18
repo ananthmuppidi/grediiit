@@ -51,8 +51,16 @@ const createSubgrediiit = async (req, res) => {
         admin: currentEmail
     });
 
+    const newReader = new Reader({
+      grediiit : name,
+      follower: currentEmail ,
+      status: 'following',
+    });
+    
+    
     try {
         const savedSubgrediiit = await subgrediiit.save();
+        await newReader.save()
         res.status(201).json(savedSubgrediiit);
     } catch (err) {
         console.log(err)

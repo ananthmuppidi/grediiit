@@ -5,7 +5,7 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 
 const getFollowers = async (req, res) => {
-    
+
     let currentEmail = '';
     const authHeader = req.headers['authorization'];
     const token = authHeader.split(' ')[1];
@@ -28,7 +28,7 @@ const getFollowers = async (req, res) => {
     res.json(followers);
 }
 const getFollowing = async (req, res) => {
-    
+
     let currentEmail = '';
     const authHeader = req.headers['authorization'];
     const token = authHeader.split(' ')[1];
@@ -66,32 +66,40 @@ const follow = async (req, res) => {
         }
     );
 
-    console.log(currentEmail);
 
     const user = await User.findOne({ email: currentEmail });
     if (!user) {
+
         res.sendStatus(404);
         return;
     }
 
-    const followedUser = await User.findOne({ email: req.body.email });
+    console.log(req.body.email)
+
+    const followedUser = await User.findOne({ username: req.body.email });
     if (!followedUser) {
+
         res.sendStatus(404);
         return;
     }
+
+    console.log(user.email)
+    console.log(followedUser.email)
 
     const following = new Follower({
         follower: user.email,
         followed: followedUser.email
     });
 
-    await following.save();
+    const alreadyFollows = await Follower.findOne({ follower: user.email, followed: followedUser.email })
+    if (!alreadyFollows && (user.email != followedUser.email)) { await following.save(); }
+
     res.sendStatus(200);
 }
 
 
 const removeFollower = async (req, res) => {
-    
+
     let currentEmail = '';
     const authHeader = req.headers['authorization'];
     const token = authHeader.split(' ')[1];
@@ -104,10 +112,11 @@ const removeFollower = async (req, res) => {
         }
     );
 
-    console.log(currentEmail);
+
+    
     try {
         
-        await Follower.deleteOne({ following: req.body.email, follower: currentEmail })
+        await Follower.deleteOne({ follower: req.body.email, followed: currentEmail })
         return res.sendStatus(200);
     } catch (err) {
         console.log(err)
@@ -131,15 +140,15 @@ const removeFollowing = async (req, res) => {
         }
     );
 
-    console.log(currentEmail);
-
     const user = await User.findOne({ email: currentEmail });
     if (!user) {
         res.sendStatus(404);
         return;
     }
+
     try {
-        await Follower.deleteOne({ follower: req.body.email, following: currentEmail })
+        console.log(req.body.email)
+        await Follower.deleteOne({ follower: currentEmail, followed: req.body.email})
         return res.sendStatus(200);
     } catch (err) {
         console.log(err)

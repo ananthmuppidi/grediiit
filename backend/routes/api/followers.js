@@ -7,7 +7,8 @@ router.route('/')
     .get(followerController.getFollowers)
     .delete(followerController.getFollowing)
 router.route('/delete')
-    .get(followerController.removeFollower)
+    .post(followerController.removeFollowing)
+router.route('/delete/removefollower')
     .post(followerController.removeFollower)
     
     
